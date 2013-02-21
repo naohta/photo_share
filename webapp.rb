@@ -1,6 +1,6 @@
 #coding:utf-8
 require 'sinatra'
-require 'json'
+require 'fileutils'
 
 before do
   content_type:html
@@ -11,8 +11,11 @@ post '/photo' do
   if params[:photo]
     content_type params[:photo][:type]
     f = params[:photo][:tempfile]
-    f.read f.size
-    #File.open([:photo]
+    FileUtils.cp(f,params[:photo][:filename])
+    "OK!"
+  else
+    "Error. Didn't upload."
   end
+  
 end
 
