@@ -1,0 +1,7 @@
+Amazon Linux has Python v2
+
+Pytho v2
+sudo python -m SimpleHTTPServer 8000
+
+Pthon v3
+sudo python -m http.server 8000

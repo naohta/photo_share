@@ -11,11 +11,10 @@ post '/photo' do
   if params[:photo]
     content_type params[:photo][:type]
     f = params[:photo][:tempfile]
-    FileUtils.cp(f,params[:photo][:filename])
-    "OK!"
+    FileUtils.cp(f,"public/uploaded/" + params[:photo][:filename])
+    redirect 'ec2-54-248-48-75.ap-northeast-1.compute.amazonaws.com:8000'
   else
     "Error. Didn't upload."
   end
-  
 end
 
