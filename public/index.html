@@ -11,12 +11,15 @@
     <form action="photo" enctype="multipart/form-data" method="post">
       ボタンを押して、写真を選んでください。<br>
       （カメラで撮影することも出来ます）<br>
-      <input type="file" name="photo" accept="image/*; capture=camera" onchange="(function(){
-          alert('H');
-          $('#send').css('visibility','visible');
-        })()">
+      <input type="file" name="photo" accept="image/*; capture=camera" onchange="photo_selected()">
       <br>
       <input id="send" type="submit" value="この写真を送信する" style="visibility:hidden">
     </form>
+    <script>
+      var photo_selected = function(){
+        alert('J');
+        $('#send').css('visibility','visible');
+      };
+    </script>
   </body>
 </html>

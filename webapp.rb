@@ -12,6 +12,7 @@ post '/photo' do
     content_type params[:photo][:type]
     f = params[:photo][:tempfile]
     f.read f.size
+    #File.open([:photo]
   end
 end
 
