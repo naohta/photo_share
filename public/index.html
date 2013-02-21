@@ -5,9 +5,18 @@
     <title>PhotoShare by Naohiro OHTA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <link href="basic.css" rel="stylesheet" >
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   </head>
   <body>
-    <input type="file" name="photo" accept="image/*; capture=camera"><br>
+    <form action="photo" enctype="multipart/form-data" method="post">
+      ボタンを押して、写真を選んでください。<br>
+      （カメラで撮影することも出来ます）<br>
+      <input type="file" name="photo" accept="image/*; capture=camera" onchange="(function(){
+          alert('H');
+          $('#send').css('visibility','visible');
+        })()">
+      <br>
+      <input id="send" type="submit" value="この写真を送信する" style="visibility:hidden">
+    </form>
   </body>
 </html>

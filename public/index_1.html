@@ -1,0 +1,25 @@
+<!DOCTYPE HTML> <!-- Created by Naohiro OHTA, All Rights Reserved. -->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>PhotoShare by Naohiro OHTA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  </head>
+  <body>
+    ボタンを押して、写真を選んでください。<br>
+    （カメラで撮影することも出来ます）<br>
+    <input type="file" id="photo" accept="image/*; capture=camera" onchange='(function(){
+      console.log(value);
+      //$("#selected").attr("src","Blue hills.jpg");
+      //$("#selected").attr("src",value); //Not allowed to load local resource.
+    })()'>
+    <br>
+    <input type="button" label="送信する" onclick='(function(){
+      console.log($("#photo")[0]);
+    })()'>
+    <br>
+    <img id="selected">
+  </body>
+</html>
