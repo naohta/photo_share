@@ -2,19 +2,18 @@
 require 'sinatra'
 require 'fileutils'
 
-before do
-  content_type:html
-end
-
 post '/photo' do
+  content_type:json
   p params
-  if params[:photo]
-    content_type params[:photo][:type]
-    f = params[:photo][:tempfile]
-    FileUtils.cp(f,"public/uploaded/" + params[:photo][:filename])
-    redirect 'ec2-54-248-48-75.ap-northeast-1.compute.amazonaws.com:8000'
+  if params[:imgData]
+    content_type params[:imgData][:type]
+    f = params[:imgData][:tempfile]
+    FileUtils.cp(f,"public/uploaded/" + params[:imgData][:filename])
+    #"OK, Uploaded!"
+    @mes = 'upload completed!'
   else
-    "Error. Didn't upload."
+    #"Error. Didn't upload."
+    @mes = 'Error..'
   end
 end
 
