@@ -28,4 +28,8 @@ get '/file/*' do |filename|
   send_file filename
 end
 
+get '/file2/*' do |filename|
+  content_type:'imgage/jpeg'
+  send_file EXIFR::JPEG.new(filename).thumbnail
+end
 
