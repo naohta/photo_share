@@ -32,12 +32,13 @@ get '/filenames/*' do |date|
 end
 
 get '/file/*' do |filename|
-  content_type:'imgage/jpeg'
+  #content_type:image/jpeg
   send_file filename
 end
 
-get '/file2/*' do |filename|
-  content_type:'imgage/jpeg'
-  send_file EXIFR::JPEG.new(filename).thumbnail
-end
+
+#get '/file2/*' do |filename|
+#  content_type:'image/jpeg'
+#  send_file EXIFR::JPEG.new(filename).thumbnail
+#end
 
