@@ -17,8 +17,15 @@ post '/photo' do
   p params
   if params[:imgData]
     f = params[:imgData][:tempfile]
-    tm = (d=EXIFR::JPEG.new(f).date_time) ? d : Time.now.localtime("+09:00")
-    FileUtils.cp(f,"uploaded/#{tm.strftime("%Y-%m-%d")} [#{SecureRandom.uuid}].jpg")
+    d = EXIFR::JPEG.new(f).date_time
+    date_kind = ""
+    if(d==nil) then
+      d = Time.now.localtime("+09:00")
+      date_kind = "upload_date";
+    else
+      date_kind = "shot_date"
+    end
+    FileUtils.cp(f,"uploaded/#{d.strftime("%Y-%m-%d")}[#{SecureRandom.uuid}]#{date_kind}.jpg")
     "OK, Uploaded! - PhotoShare"
   else
     "Error. Didn't upload. - PhotoShare"
