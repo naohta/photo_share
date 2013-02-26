@@ -1,0 +1,20 @@
+        var date_str_array = [];
+        var period = 6;
+        var d = new Date().getTime();
+        var end = d - period * (1000*60*60*24);
+        for(d; d>end; d=d-(1000*60*60*24)){
+          date_str_array.push($.datepicker.formatDate('yy-mm-dd',new Date(d)));
+        }
+        console.log("date_str_array",date_str_array);
+        
+        $.each(date_str_array, function(index,date_str){
+          $("#photos").append("<hr><h2>"+date_str+"</h2><div id='"+date_str+"'></div>");
+          $.get('filenames/'+this, null, function(result){
+            var filenames = eval(result);
+            console.log("filenames",filenames);
+            $.each(filenames,function(index,filename){
+              console.log("filename",filename);
+              $("#"+date_str).append("<img src='file/"+filename+"'>");
+            });
+          },'json');
+        });

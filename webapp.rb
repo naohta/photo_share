@@ -4,6 +4,14 @@ require 'fileutils'
 require 'exifr'
 require 'securerandom'
 
+get '/auth/*/*' do |email,hashed_pw|
+  p hashed_pw
+  if(email != 'test@t.com') then return end
+  if(hashed_pw != "037dee0bb90ceea74156f02832d0d9c88baca327cd9b469abcb2ce07cf033c10") then return end
+  
+  erb :gallery_snippet
+end
+
 post '/photo' do
   content_type:json
   p params
