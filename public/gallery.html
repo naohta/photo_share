@@ -12,11 +12,12 @@
   <body>
     <h1>PhotoShare Gallery</h1>
     <h4>各地で撮影された写真です!</h4>
+    <input type="button" onclick="load_photos()" value="写真を再読み込みする">
     <div id='photos'><div>
     <script>
       $(function(){
-        var email = prompt("登録しているメールアドレスを入力して下さい。");
-        var pw = prompt("パスワードを入力して下さい。安全の為にサーバへは暗号化して送付します。（正確にはソルト有りハッシュ化。ただしSSL通信(https)ではありません。）");
+        var email = "test@t.com"
+        var pw = prompt("パスワードを入力して下さい。");
         var hash = CryptoJS.SHA256(email+"@@PhotoShar@@"+pw).toString(CryptoJS.enc.HEX);
         pw = "";
         $.get('auth/'+email+'/'+hash, null, function(){},'script');

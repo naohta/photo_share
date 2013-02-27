@@ -19,4 +19,4 @@ doc/
 .elasticbeanstalk/
 
 #NAO
-/uploaded/*.jpg
+/uploaded/*

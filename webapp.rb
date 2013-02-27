@@ -4,6 +4,8 @@ require 'fileutils'
 require 'exifr'
 require 'securerandom'
 
+PHOTO_DIR = "uploaded/"
+
 get '/auth/*/*' do |email,hashed_pw|
   p hashed_pw
   if(email != 'test@t.com') then return end
@@ -11,6 +13,8 @@ get '/auth/*/*' do |email,hashed_pw|
   
   erb :gallery_snippet
 end
+
+
 
 post '/photo' do
   content_type:json
@@ -25,7 +29,8 @@ post '/photo' do
     else
       date_kind = "shot_date"
     end
-    FileUtils.cp(f,"uploaded/#{d.strftime("%Y-%m-%d")}[#{SecureRandom.uuid}]#{date_kind}.jpg")
+    if(!File.exist?(PHOTO_DIR)) then Dir.mkdir(PHOTO_DIR) end
+    FileUtils.cp(f,"#{PHOTO_DIR}#{d.strftime("%Y-%m-%d")}[#{SecureRandom.uuid}]#{date_kind}.jpg")
     "OK, Uploaded! - PhotoShare"
   else
     "Error. Didn't upload. - PhotoShare"
@@ -34,7 +39,7 @@ end
 
 get '/filenames/*' do |date|
   content_type:json
-  files = Dir.glob("uploaded/#{date}*.jpg")
+  files = Dir.glob("#{PHOTO_DIR}#{date}*.jpg")
   p files.to_s
 end
 
